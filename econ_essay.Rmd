@@ -1,0 +1,86 @@
+---
+title: "econ_essay"
+author: "Alia Ajina"
+date: "5/27/2022"
+output: html_document
+---
+```{r setup, include=FALSE, echo=F}
+knitr::opts_chunk$set(echo = F, message = F, warning = F, fig.pos = "H", out.extra = "")
+
+# load packages
+library(tidyverse)
+library(magrittr)
+library(kableExtra)
+library(ggplot2)
+library(here)
+library(janitor)
+library(cowplot)
+```
+
+```{r}
+dem <- function(x){
+  return(100-x)
+}
+
+dem_shift <- function(x){
+  return(75-x)
+}
+
+sup_shift <- function(x){
+  return(x + 20)
+}
+
+sup <- function(x){
+  return(x)
+}
+
+mec <- function(x){
+  return(0.5*x)
+}
+
+msc <- function(x){
+  return(1.5*x)
+}
+```
+
+## Supply shifts from government regulations on crop switching/new water conserving technologies 
+
+### 1. Supply shift
+
+```{r, supply_shift, out.width='67%', fig.align='center'}
+df <- data.frame()
+
+ggplot(df) + 
+  theme_classic() +
+  stat_function(fun = sup_shift, color = "brown", size = 1) +
+  stat_function(fun = dem, color = "royalblue4", size = 1) + 
+  stat_function(fun = sup, color = "red4", size = 1) +
+  geom_text(aes(label = "Demand", x = 12.5, y = 91.5), size = 4, angle = -32) +
+  geom_text(aes(label = "Supply", x = 75, y = 79), size = 4, angle = 32) +
+  geom_segment(aes(x=50,xend=50,y=5,yend=50), linetype = "dashed") +
+  geom_segment(aes(x=5,xend=50,y=50,yend=50), linetype = "dashed") +
+  geom_segment(aes(x=37.5,xend=37.5,y=5,yend=37.5), linetype = "dashed") +
+  geom_segment(aes(x=5,xend=37.5,y=37.5,yend=37.5), linetype = "dashed") +
+  geom_point(aes(50,50), size = 3, color = "black") +    
+  geom_text(aes(label = "P0", x = 0, y = 50), size = 3) +
+  geom_text(aes(label = "Q0", x = 50, y = 0), size = 3) +
+  
+  geom_text(aes(label = "P1", x = 0, y = 37.5), size = 3) +
+  geom_text(aes(label = "Q1", x = 37.5, y = 0), size = 3) +
+  geom_segment(aes(x = 33.5, y = 64.5, xend = 50, yend = 20),
+                  arrow = arrow(length = unit(0.2, "cm"))) +
+  geom_segment(aes(x = 36.5, y = 61.5, xend = 50, yend = 20),
+                  arrow = arrow(length = unit(0.2, "cm"))) +
+  geom_segment(aes(x = 39.5, y = 58.5, xend = 50, yend = 20),
+                  arrow = arrow(length = unit(0.2, "cm"))) +
+  
+  theme(axis.text.x=element_blank(), #remove x axis labels
+        axis.ticks.x=element_blank(), #remove x axis ticks
+        axis.text.y=element_blank(),  #remove y axis labels
+        axis.ticks.y=element_blank()  #remove y axis ticks
+        ) +
+  xlim(0, 100) + ylim(0, 100) +
+  labs(y = "Price ($/crop)\n",
+       x = "\nQuantity (Crops)")
+```
+
