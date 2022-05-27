@@ -26,7 +26,7 @@ dem_shift <- function(x){
   return(75-x)
 }
 
-sup_shift <- function(x){
+sup_shift_1 <- function(x){
   return(x + 20)
 }
 
@@ -75,6 +75,14 @@ ggplot(df) +
   geom_text(aes(label = "P1", x = 0, y = 60), size = 3) +
   geom_text(aes(label = "Q1", x = 40, y = 0), size = 3) +
   
+  geom_segment(aes(x = 64, y = 66, xend = 55, yend = 73),
+                  arrow = arrow(length = unit(0.2, "cm"))) + 
+  geom_segment(aes(x = 54, y = 56, xend = 45, yend = 63),
+                  arrow = arrow(length = unit(0.2, "cm"))) + 
+  geom_segment(aes(x = 58, y = 61, xend = 50, yend = 68),
+                  arrow = arrow(length = unit(0.2, "cm"))) +
+  
+  
   theme(axis.text.x=element_blank(), #remove x axis labels
         axis.ticks.x=element_blank(), #remove x axis ticks
         axis.text.y=element_blank(),  #remove y axis labels
@@ -84,4 +92,55 @@ ggplot(df) +
   labs(y = "Price ($/crop)\n",
        x = "\nQuantity (Crops)")
 ```
+
+
+2. Subsidy is introduced to counter the post-regulation supply and return supply to original line
+
+
+```{r, supply_shift, out.width='67%', fig.align='center'}
+df <- data.frame()
+
+ggplot(df) + 
+  theme_classic() +
+  stat_function(fun = sup_shift, color = "brown", size = 1) +
+  stat_function(fun = dem, color = "royalblue4", size = 1) + 
+  stat_function(fun = sup, color = "red4", size = 1) +
+  geom_text(aes(label = "Demand", x = 12.5, y = 91.5), size = 4, angle = -32) +
+  geom_text(aes(label = "Post-subsidy Supply", x = 75, y = 79), size = 4, angle = 32) +
+  geom_text(aes(label = "Post-regulation Supply", x = 65, y = 89), size = 4, angle = 32) +
+  
+  geom_segment(aes(x=50,xend=50,y=5,yend=50), linetype = "dashed") +
+  
+  geom_segment(aes(x=5,xend=50,y=50,yend=50), linetype = "dashed") +
+  
+  geom_segment(aes(x=40,xend=40,y=5,yend=60), linetype = "dashed") +
+  
+  geom_segment(aes(x=5,xend=40,y=60,yend=60), linetype = "dashed") +
+  
+  geom_point(aes(40,60), size = 3, color ="black") +
+  geom_point(aes(50,50), size = 3, color = "black") +    
+  geom_text(aes(label = "P1", x = 0, y = 50), size = 3) +
+  geom_text(aes(label = "Q1", x = 50, y = 0), size = 3) +
+  
+  geom_text(aes(label = "P0", x = 0, y = 60), size = 3) +
+  geom_text(aes(label = "Q0", x = 40, y = 0), size = 3) +
+  
+  geom_segment(aes(x = 56, y = 75, xend = 63, yend = 65),
+                  arrow = arrow(length = unit(0.2, "cm"))) + 
+  geom_segment(aes(x = 46, y = 65, xend = 53, yend = 55),
+                  arrow = arrow(length = unit(0.2, "cm"))) + 
+  geom_segment(aes(x = 51.5, y = 70, xend = 58, yend = 60),
+                  arrow = arrow(length = unit(0.2, "cm"))) +
+  
+  
+  theme(axis.text.x=element_blank(), #remove x axis labels
+        axis.ticks.x=element_blank(), #remove x axis ticks
+        axis.text.y=element_blank(),  #remove y axis labels
+        axis.ticks.y=element_blank()  #remove y axis ticks
+        ) +
+  xlim(0, 100) + ylim(0, 100) +
+  labs(y = "Price ($/crop)\n",
+       x = "\nQuantity (Crops)")
+```
+
 
