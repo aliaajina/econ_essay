@@ -52,9 +52,9 @@ df <- data.frame()
 
 ggplot(df) + 
   theme_classic() +
-  stat_function(fun = sup_shift, color = "brown", size = 1) +
-  stat_function(fun = dem, color = "royalblue4", size = 1) + 
-  stat_function(fun = sup, color = "red4", size = 1) +
+  stat_function(fun = sup_shift_1, color = "sienna4", size = 1) +
+  stat_function(fun = dem, color = "skyblue4", size = 1) + 
+  stat_function(fun = sup, color = "sienna4", size = 1) +
   geom_text(aes(label = "Demand", x = 12.5, y = 91.5), size = 4, angle = -32) +
   geom_text(aes(label = "Original Supply", x = 75, y = 79), size = 4, angle = 32) +
   geom_text(aes(label = "Post-regulation Supply", x = 65, y = 89), size = 4, angle = 31) +
@@ -102,9 +102,9 @@ df <- data.frame()
 
 ggplot(df) + 
   theme_classic() +
-  stat_function(fun = sup_shift, color = "brown", size = 1) +
-  stat_function(fun = dem, color = "royalblue4", size = 1) + 
-  stat_function(fun = sup, color = "red4", size = 1) +
+  stat_function(fun = sup_shift_1, color = "sienna4", size = 1) +
+  stat_function(fun = dem, color = "skyblue4", size = 1) + 
+  stat_function(fun = sup, color = "sienna4", size = 1) +
   geom_text(aes(label = "Demand", x = 12.5, y = 91.5), size = 4, angle = -32) +
   geom_text(aes(label = "Post-subsidy Supply", x = 75, y = 79), size = 4, angle = 32) +
   geom_text(aes(label = "Post-regulation Supply", x = 65, y = 89), size = 4, angle = 32) +
